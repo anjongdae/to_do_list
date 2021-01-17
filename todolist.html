@@ -132,7 +132,7 @@
                 padding: 0 0 0 11px;
             }
 
-            li>input[type="text"] {
+            div>input[type="text"] {
                 width: 226px;
             }
 
@@ -151,7 +151,7 @@
 
             /* Edit Task */
 
-            ul li input[type=text] {
+            ul li.editModesd input[type=text] {
                 display: none;
             }
 
@@ -175,96 +175,145 @@
     <title>to_do_list</title>
 </head>
 <body>
-    <section style="display: none;">
-        <h5>목표설정</h5>
-        <ul>
-            <li>
-                <div>시작</div>
-                <select name="year" id="yaer">
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
+<div class="container">
+    <div>
+        <h1>To do list</h1>
+    </div>
+    <ul class="create_list">
+        <li>
+            <div>
+                <select name="time" id="time" onchange=select_change();>
+                    <option value="none"></option>
+                    <option value="am">Am</option>
+                    <option value="pm">Pm</option>
                 </select>
-                <select name="month" id="month">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
+            </div>
+            <div>
+                <select name="hour" id="hour">
+                    
                 </select>
-                <select name="date" id="date">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
+            </div>
+            <div>
+                <select name="min" id="min">
+                    
                 </select>
-            </li>
-            <li>
-                <div>일수설정</div>
-                <select name="d_day" id="d_day">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                </select>
-            </li>
-            <li>
-                <div>목표</div>
-                <input type="text" id="headtext">
-            </li>
-            <li>
-                <div>세부사항</div>
-                <input type="text" id="bodytext">
-            </li>
-        </ul>
-    </section>
-    <section>
-        <div>
-            <h5>목록</h5>
-            <button>생성</button>   
-        </div>
-        <ul>
-            <li><div>2021-01-13</div><div>html5 연습</div><div>doit책이용해서....</div><div>30</div></li>
-        </ul>
-    </section>
-    <section>
-        <ul>
-            <li>
-                <ul>
-                    <li>
-                        <div>2021-01-13</div>
-                        <div>30</div>
-                    </li>
-                    <li>
-                        <div>목표</div>
-                        <div>html5 연습</div>
-                    </li>
-                    <li>
-                        <div>세부사항</div>
-                        <div>doit책이용해서 태그 기본요소를 중요시 하고 특히 Css 부분을 많이 연습할것이다</div>
-                    </li>
-                    <li>
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </li>
+            </div>
+            <div>
+                <input type="text" id="text_val">
+            </div>
+            <div onclick="add_todolist();">
+                <button>+</button>
+            </div>
+        </li>
+        <li>
+            
+        </li>
+    </ul>
+    <ul class="list" id="do_list">
+        <li>
+            
+        </li>
+    </ul>
 
-
-                </ul>
-
-            </li>
-        </ul>
-    </section>
+</div>
 </body>
+<script id="select_change">
+    var Am_hour = [0,1,2,3,4,5,6,7,8,9,10,11];
+    var Pm_hour = [12,13,14,15,16,17,18,19,21,22,23];
+   
+
+    function select_change(){
+        const time_val = document.getElementById('time').value;
+        var time_option = document.getElementById("time");
+        var hour_option = document.getElementById("hour");
+        var min_option = document.getElementById("min");
+        
+        
+
+        while ( hour_option.hasChildNodes() ) { 
+            hour_option.removeChild( hour_option.firstChild ); 
+        }
+        while ( min_option.hasChildNodes() ) { 
+            min_option.removeChild( min_option.firstChild ); 
+        }
+
+        
+
+        if(time_val=="am"){
+            
+
+            for (i=0; i<Am_hour.length;i++){
+                var option_am = document.createElement("option");       
+                option_am.text = Am_hour[i];
+                option_am.value = Am_hour[i];
+            
+                hour_option.options.add(option_am);
+            }
+        
+            for (i=0; i<60;i++){
+                var option_min = document.createElement("option");       
+                option_min.text = i;
+                option_min.value = i;
+            
+                min_option.options.add(option_min);
+            }
+
+            
+        }else if(time_val=="pm"){
+
+            for (i=0; i<Pm_hour.length;i++){
+                var option_pm = document.createElement("option");       
+                option_pm.text = Pm_hour[i]-12;
+                option_pm.value = Pm_hour[i]-12;
+            
+                hour_option.options.add(option_pm);
+            }
+
+            for (i=0; i<60;i++){
+                var option_min = document.createElement("option");       
+                option_min.text = i;
+                option_min.value = i;
+            
+                min_option.options.add(option_min);
+            }
+
+        }else{
+         
+           
+        }
+
+
+    }
+</script>
+<script id="add_todolist">
+
+        function add_todolist(){
+
+            
+            
+
+
+            var todolist = document.getElementById("do_list"); 
+            var time_val = document.getElementById("time").value;
+            var hour_val = document.getElementById("hour").value;
+            var min_val = document.getElementById("min").value;
+
+            var text_val = document.getElementById("text_val").value;
+           
+            
+           
+            var timelist = document.createElement( 'div' );
+            var timeText = document.createTextNode( time_val+" "+hour_val+":"+min_val);
+            timelist.appendChild( timeText );
+
+            var textlist = document.createElement( 'div' );
+            var Textval = document.createTextNode(text_val);
+            textlist.appendChild( Textval );
+            
+            todolist.appendChild(timelist);
+            todolist.appendChild(textlist);
+
+        }
+
+</Script>
 </html>
