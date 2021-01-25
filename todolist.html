@@ -1,319 +1,395 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <style>
-            body {
-                    background: #fff;
-                    color: #333;
-                    font-family: Lato, sans-serif;
-                    background: #B2FEFA;
-                    /* fallback for old browsers */
-                    background: -webkit-linear-gradient(to right, #0ED2F7, #B2FEFA);
-                    /* Chrome 10-25, Safari 5.1-6 */
-                    background: linear-gradient(to right, #0ED2F7, #B2FEFA);
-                    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                }
+<style>
+    body {
+        background: #fff;
+        color: #333;
+        font-family: Lato, sans-serif;
+        background: #B2FEFA;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #0ED2F7, #B2FEFA);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #0ED2F7, #B2FEFA);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
 
-                #title {
-                    margin-top: 5px;
-                    font-size: 50px;
-                    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-                    text-align: center;
-                }
+    #title {
+        margin-top: 5px;
+        font-size: 50px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+    }
 
-            .container {
-                display: block;
-                width: 40vw;
-                margin: 50px auto 0;
-            }
+    .container {
+        display: block;
+        width: 40vw;
+        margin: 50px auto 0;
+    }
 
-            ul {
-                margin: 0;
-                padding: 0;
-            }
+    ul {
+        margin: 0;
+        padding: 0;
+    }
 
-            li * {
-                float: left;
-            }
+    li * {
+        float: left;
+    }
 
-            li,
-            h3 {
-                clear: both;
-                list-style: none;
-            }
+    li,
+    h3 {
+        clear: both;
+        list-style: none;
+    }
 
-            input,
-            button {
-                outline: none;
-            }
+    input,
+    button {
+        outline: none;
+    }
 
-            button {
-                background-color: #008CBA;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                padding: 5px;
-                margin: 5px;
-                font-size: 13px;
-                border-radius: 10%;
-            }
+    button {
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        padding: 5px;
+        margin: 5px;
+        font-size: 13px;
+        border-radius: 10%;
+    }
 
-            button:hover {
-                background: #2079b0;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-
-            /* Heading */
-
-            h3,
-            label[for='new-task'] {
-                color: #333;
-                font-weight: 700;
-                font-size: 15px;
-                border-bottom: 2px solid #333;
-                padding: 30px 0 10px;
-                margin: 0;
-                text-transform: uppercase;
-            }
-
-            input[type="text"] {
-                margin: 0;
-                font-size: 18px;
-                line-height: 18px;
-                height: 18px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                background: #fff;
-                border-radius: 6px;
-                font-family: Lato, sans-serif;
-                color: #888;
-            }
-
-            input[type="text"]:focus {
-                color: #333;
-            }
+    button:hover {
+        background: #2079b0;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 
-            /* New Task */
+    /* Heading */
 
-            label[for='new-task'] {
-                display: block;
-                margin: 0 0 20px;
-            }
+    h3,
+    label[for='new-task'] {
+        color: #333;
+        font-weight: 700;
+        font-size: 15px;
+        border-bottom: 2px solid #333;
+        padding: 30px 0 10px;
+        margin: 0;
+        text-transform: uppercase;
+    }
 
-            input#new-task {
-                float: left;
-                width: 318px;
-            }
+    input[type="text"] {
+        margin: 0;
+        font-size: 18px;
+        line-height: 18px;
+        height: 18px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background: #fff;
+        border-radius: 6px;
+        font-family: Lato, sans-serif;
+        color: #888;
+    }
 
-
-            /* Task list */
-
-            li {
-                overflow: hidden;
-                padding: 20px 0;
-                border-bottom: 1px solid #eee;
-            }
-
-            li>input[type="checkbox"] {
-                margin: 0 10px;
-                position: relative;
-                top: 15px;
-            }
-
-            li>label {
-                font-size: 18px;
-                line-height: 40px;
-                width: 237px;
-                padding: 0 0 0 11px;
-            }
-
-            div>input[type="text"] {
-                width: 226px;
-            }
-
-            li>.delete:hover {
-                color: #CF2323;
-            }
+    input[type="text"]:focus {
+        color: #333;
+    }
 
 
-            /* Completed */
+    /* New Task */
 
-            #completed-tasks label {
-                text-decoration: line-through;
-                color: #888;
-            }
+    label[for='new-task'] {
+        display: block;
+        margin: 0 0 20px;
+    }
+
+    input#new-task {
+        float: left;
+        width: 318px;
+    }
 
 
-            /* Edit Task */
+    /* Task list */
 
-            ul li.editModesd input[type=text] {
-                display: none;
-            }
+    li {
+        overflow: hidden;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+    }
 
-            ul li.editMode input[type=text] {
-                display: block;
-            }
+    li>input[type="checkbox"] {
+        margin: 0 10px;
+        position: relative;
+        top: 15px;
+    }
 
-            ul li.editMode label {
-                display: none;
-            }
+    li>label {
+        font-size: 18px;
+        line-height: 40px;
+        width: 237px;
+        padding: 0 0 0 11px;
+    }
 
-            #clear {
-                font-size: 15px;
-                float: right;
-                text-align: center;
-            }
-    </style>
+    div>input[type="text"] {
+        width: 226px;
+    }
+
+    li>.delete:hover {
+        color: #CF2323;
+    }
+
+
+    /* Completed */
+
+    #completed-tasks label {
+        text-decoration: line-through;
+        color: #888;
+    }
+
+
+    /* Edit Task */
+
+    ul li.editModesd input[type=text] {
+        display: none;
+    }
+
+    ul li.editMode input[type=text] {
+        display: block;
+    }
+
+    ul li.editMode label {
+        display: none;
+    }
+
+    #clear {
+        font-size: 15px;
+        float: right;
+        text-align: center;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>to_do_list</title>
 </head>
+
 <body>
-<div class="container">
-    <div>
-        <h1>To do list</h1>
+    <div class="container">
+        <div>
+            <h1>To do list</h1>
+        </div>
+        <div id="clock">
+            
+        </div>
+        <ul class="create_list">
+            <li>
+                <div>
+                    <select name="time" id="time" onchange=select_change();>
+                        <option value="none"></option>
+                        <option value="am">AM</option>
+                        <option value="pm">PM</option>
+                    </select>
+                </div>
+                <div>
+                    <select name="hour" id="hour">
+
+                    </select>
+                </div>
+                <div>
+                    <select name="min" id="min">
+
+                    </select>
+                </div>
+                <div>
+                    <input type="text" id="text_val">
+                </div>
+                <div>
+                    <button onclick="add_todolist()">+</button>
+                </div>
+            </li>
+
+        </ul>
+        <ul class="list" id="do_list">
+
+        </ul>
+
     </div>
-    <ul class="create_list">
-        <li>
-            <div>
-                <select name="time" id="time" onchange=select_change();>
-                    <option value="none"></option>
-                    <option value="am">Am</option>
-                    <option value="pm">Pm</option>
-                </select>
-            </div>
-            <div>
-                <select name="hour" id="hour">
-                    
-                </select>
-            </div>
-            <div>
-                <select name="min" id="min">
-                    
-                </select>
-            </div>
-            <div>
-                <input type="text" id="text_val">
-            </div>
-            <div onclick="add_todolist();">
-                <button>+</button>
-            </div>
-        </li>
-        <li>
-            
-        </li>
-    </ul>
-    <ul class="list" id="do_list">
-        <li>
-            
-        </li>
-    </ul>
 
-</div>
-</body>
-<script id="select_change">
-    var Am_hour = [0,1,2,3,4,5,6,7,8,9,10,11];
-    var Pm_hour = [12,13,14,15,16,17,18,19,21,22,23];
-   
-
-    function select_change(){
-        const time_val = document.getElementById('time').value;
-        var time_option = document.getElementById("time");
-        var hour_option = document.getElementById("hour");
-        var min_option = document.getElementById("min");
-        
-        
-
-        while ( hour_option.hasChildNodes() ) { 
-            hour_option.removeChild( hour_option.firstChild ); 
+    <script>
+        var Am_hour = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        var Pm_hour = [12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23];
+    
+    
+        function select_change() {
+            const time_val = document.getElementById('time').value;
+            var time_option = document.getElementById("time");
+            var hour_option = document.getElementById("hour");
+            var min_option = document.getElementById("min");
+    
+    
+    
+            while (hour_option.hasChildNodes()) {
+                hour_option.removeChild(hour_option.firstChild);
+            }
+            while (min_option.hasChildNodes()) {
+                min_option.removeChild(min_option.firstChild);
+            }
+    
+    
+    
+            if (time_val == "am") {
+    
+    
+                for (i = 0; i < Am_hour.length; i++) {
+                    var option_am = document.createElement("option");
+                    option_am.text = Am_hour[i];
+                    option_am.value = Am_hour[i];
+    
+                    hour_option.options.add(option_am);
+                }
+    
+                for (i = 0; i < 60; i++) {
+                    var option_min = document.createElement("option");
+                    option_min.text = i;
+                    option_min.value = i;
+    
+                    min_option.options.add(option_min);
+                }
+    
+    
+            } else if (time_val == "pm") {
+    
+                for (i = 0; i < Pm_hour.length; i++) {
+                    var option_pm = document.createElement("option");
+                    option_pm.text = Pm_hour[i] - 12;
+                    option_pm.value = Pm_hour[i] - 12;
+    
+                    hour_option.options.add(option_pm);
+                }
+    
+                for (i = 0; i < 60; i++) {
+                    var option_min = document.createElement("option");
+                    if(i<10)option_min.text = "0"+i;
+                    else option_min.text = i;
+                    option_min.value = i;
+    
+                    min_option.options.add(option_min);
+                }
+    
+            } else {
+    
+    
+            }
+    
+    
         }
-        while ( min_option.hasChildNodes() ) { 
-            min_option.removeChild( min_option.firstChild ); 
-        }
-
-        
-
-        if(time_val=="am"){
+    
+    
+    
+        function deleteParent() {
             
-
-            for (i=0; i<Am_hour.length;i++){
-                var option_am = document.createElement("option");       
-                option_am.text = Am_hour[i];
-                option_am.value = Am_hour[i];
-            
-                hour_option.options.add(option_am);
-            }
-        
-            for (i=0; i<60;i++){
-                var option_min = document.createElement("option");       
-                option_min.text = i;
-                option_min.value = i;
-            
-                min_option.options.add(option_min);
-            }
-
-            
-        }else if(time_val=="pm"){
-
-            for (i=0; i<Pm_hour.length;i++){
-                var option_pm = document.createElement("option");       
-                option_pm.text = Pm_hour[i]-12;
-                option_pm.value = Pm_hour[i]-12;
-            
-                hour_option.options.add(option_pm);
-            }
-
-            for (i=0; i<60;i++){
-                var option_min = document.createElement("option");       
-                option_min.text = i;
-                option_min.value = i;
-            
-                min_option.options.add(option_min);
-            }
-
-        }else{
-         
+            var buttonID = event.srcElement.id;
+            var num =buttonID.split("_");
+            var Del = document.getElementById("li"+num[1]);
+            Del.remove();
            
         }
-
-
-    }
-</script>
-<script id="add_todolist">
-
-        function add_todolist(){
-
-            
-            
-
-
-            var todolist = document.getElementById("do_list"); 
+    
+        let cnt = 0;
+    
+        function add_todolist(e) {
+            // e.preventDefault();
+            alert('add_todolist');
+    
+            var todolist = document.getElementById("do_list");
             var time_val = document.getElementById("time").value;
             var hour_val = document.getElementById("hour").value;
             var min_val = document.getElementById("min").value;
-
+    
             var text_val = document.getElementById("text_val").value;
+    
+            var timelist_li = document.createElement('li');
+    
            
+            timelist_li.id = `li${cnt}`;
+    
+            var list_del_div = document.createElement('div');
+            var list_del = document.createElement('button');
+            var delText = document.createTextNode("삭제");
+    
+            list_del.id = 'del_' + cnt;
+    
+            var linkToContent = document.getElementById('button');
+                   // `#del_${cnt}`
             
-           
-            var timelist = document.createElement( 'div' );
-            var timeText = document.createTextNode( time_val+" "+hour_val+":"+min_val);
-            timelist.appendChild( timeText );
-
-            var textlist = document.createElement( 'div' );
+    
+                   list_del.addEventListener('click', deleteParent);
+                
+    
+            list_del.appendChild(delText);
+    
+            var timelist = document.createElement('div');
+            var timeText = document.createTextNode(time_val + " " + hour_val + " " + min_val);
+            timelist.appendChild(timeText);
+            timelist.id = `time_${cnt}`;
+            var textlist = document.createElement('div');
             var Textval = document.createTextNode(text_val);
-            textlist.appendChild( Textval );
+            textlist.appendChild(Textval);
+    
             
-            todolist.appendChild(timelist);
-            todolist.appendChild(textlist);
+            list_del_div.appendChild(list_del);
+    
+            timelist_li.appendChild(timelist);
+            timelist_li.appendChild(textlist);
+          
+            timelist_li.appendChild(list_del_div);
+    
+            todolist.appendChild(timelist_li);
+            cnt = cnt + 1;
+        }
+    function printTime() {
+
+             var clock = document.getElementById("clock");            // 출력할 장소 선택
+
+              var now = new Date();                                                  // 현재시간
+
+             var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + now.getMinutes() + "분" + now.getSeconds() + "초";
+             var hour_min =  now.getHours() + "시" + now.getMinutes() + "분";
+             clock.innerHTML = nowTime;           // 현재시간을 출력
+
+             setTimeout("printTime()",1000);         // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+             var al = document.getElementById("time_0");            
+                
+            }
+    function Time_check(a,b) {
+        var myNodelist = document.getElementsByTagName("LI");
+        for(var i=0; i< myNodelist.length; i++){
+
+            var timeck = document.getElementById("tmie_"+i); 
+            var time_str = timeck.innerText;
+            var time_sp = time_str.split(" ");
+            if(time_sp[0]=="pm")time_sp[0] = time_sp[0] + 12;
+
 
         }
+        var clock = document.getElementById("clock"); 
+        alert(timelist.innerText);    
 
-</Script>
+    }
+
+    window.onload = function() {                         // 페이지가 로딩되면 실행
+
+             printTime();
+
+             }
+
+
+
+    </script>
+    
+</body>
+
 </html>
