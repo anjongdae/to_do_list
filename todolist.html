@@ -25,10 +25,20 @@
         width: 40vw;
         margin: 50px auto 0;
     }
+    select{
+        width: 40px;
+
+    }
 
     ul {
         margin: 0;
         padding: 0;
+    }
+
+    .list{
+        border: 5px solid #ffffff;
+        height: 25rem;
+        background: #dacfcfe6;
     }
 
     li * {
@@ -55,10 +65,26 @@
         text-decoration: none;
         display: inline-block;
         padding: 5px;
-        margin: 5px;
+        margin-left: 10px;
         font-size: 13px;
         border-radius: 10%;
     }
+    
+    button.plus  {
+            background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        padding: 5px;
+        margin: 5px;
+        font-size: 20px;
+        height: 30px;
+        width: 30px;
+        border-radius: 10%;
+        }
 
     button:hover {
         background: #2079b0;
@@ -115,9 +141,13 @@
 
     li {
         overflow: hidden;
-        padding: 20px 0;
+        padding: 5px;
         border-bottom: 1px solid #eee;
     }
+    li.white{
+       background: #fff;
+    }
+
 
     li>input[type="checkbox"] {
         margin: 0 10px;
@@ -188,7 +218,7 @@
             <li>
                 <div>
                     <select name="time" id="time" onchange=select_change();>
-                        <option value="none"></option>
+                        <option value="none    "></option>
                         <option value="am">AM</option>
                         <option value="pm">PM</option>
                     </select>
@@ -207,18 +237,27 @@
                     <input type="text" id="text_val">
                 </div>
                 <div>
-                    <button onclick="add_todolist()">+</button>
+                    <button class="plus" onclick="add_todolist()">+</button>
                 </div>
+            </li>
+            <li class="white">
+                <h2>list</h2>
             </li>
 
         </ul>
+
         <ul class="list" id="do_list">
 
         </ul>
+        
 
     </div>
 
     <script>
+        var now_hour;
+        var now_min;
+        var now_sec;
+
         var Am_hour = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
         var Pm_hour = [12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23];
     
@@ -264,16 +303,16 @@
     
                 for (i = 0; i < Pm_hour.length; i++) {
                     var option_pm = document.createElement("option");
-                    option_pm.text = Pm_hour[i] - 12;
-                    option_pm.value = Pm_hour[i] - 12;
+                    option_pm.text = Pm_hour[i]-12;
+                    option_pm.value = Pm_hour[i];
     
                     hour_option.options.add(option_pm);
                 }
     
                 for (i = 0; i < 60; i++) {
                     var option_min = document.createElement("option");
-                    if(i<10)option_min.text = "0"+i;
-                    else option_min.text = i;
+                   
+                    option_min.text = i;
                     option_min.value = i;
     
                     min_option.options.add(option_min);
@@ -302,7 +341,7 @@
     
         function add_todolist(e) {
             // e.preventDefault();
-            alert('add_todolist');
+         
     
             var todolist = document.getElementById("do_list");
             var time_val = document.getElementById("time").value;
@@ -310,7 +349,10 @@
             var min_val = document.getElementById("min").value;
     
             var text_val = document.getElementById("text_val").value;
-    
+            if(text_val==""||text_val==null){
+                alert("텍스트를 입력해주세요");
+                return;
+            }
             var timelist_li = document.createElement('li');
     
            
@@ -332,13 +374,20 @@
             list_del.appendChild(delText);
     
             var timelist = document.createElement('div');
-            var timeText = document.createTextNode(time_val + " " + hour_val + " " + min_val);
+            var timeText;
+            if(time_val != "none    "){
+                timeText = document.createTextNode(time_val + " " + hour_val + " : " + min_val+" 일정: ");
+            }
+            else {
+                timeText =document.createTextNode( "       일정: ");
+            }
+            
             timelist.appendChild(timeText);
             timelist.id = `time_${cnt}`;
             var textlist = document.createElement('div');
             var Textval = document.createTextNode(text_val);
             textlist.appendChild(Textval);
-    
+            textlist.id  = 'text_' + cnt;
             
             list_del_div.appendChild(list_del);
     
@@ -357,33 +406,39 @@
               var now = new Date();                                                  // 현재시간
 
              var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + now.getMinutes() + "분" + now.getSeconds() + "초";
-             var hour_min =  now.getHours() + "시" + now.getMinutes() + "분";
+             now_hour = now.getHours();
+             now_min = now.getMinutes();
+             now_sec = now.getSeconds();
              clock.innerHTML = nowTime;           // 현재시간을 출력
-
-             setTimeout("printTime()",1000);         // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
-             var al = document.getElementById("time_0");            
+             console.log("now_hour"+now_hour+"now_min"+now_min+"now_sec: "+now_sec);
+              setTimeout("printTime()",1000);         // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000           
+             Time_check();            
                 
             }
-    function Time_check(a,b) {
+    function Time_check() {
         var myNodelist = document.getElementsByTagName("LI");
-        for(var i=0; i< myNodelist.length; i++){
+        
+      
+            for(var i=0; i< myNodelist.length-1; i++){
 
-            var timeck = document.getElementById("tmie_"+i); 
-            var time_str = timeck.innerText;
-            var time_sp = time_str.split(" ");
-            if(time_sp[0]=="pm")time_sp[0] = time_sp[0] + 12;
+                var timeck = document.getElementById("time_"+i); 
+                var time_str = timeck.innerText;
+                var time_sp = time_str.split(" ");
+                var LI_text = document.getElementById("text_"+i).innerText; 
+                if(time_sp[1]==now_hour&&time_sp[3]==now_min){
+                if(now_sec=="0") alert(LI_text);
+                }
+                console.log("for"+i);
 
-
-        }
-        var clock = document.getElementById("clock"); 
-        alert(timelist.innerText);    
-
+            }
+        
+        
     }
 
     window.onload = function() {                         // 페이지가 로딩되면 실행
 
              printTime();
-
+             
              }
 
 
