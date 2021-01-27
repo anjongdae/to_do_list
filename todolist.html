@@ -9,7 +9,7 @@
         /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #0ED2F7, #B2FEFA);
         /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #0ED2F7, #B2FEFA);
+        background: linear-gradient(to right, #a5b1b3, #B2FEFA);
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
@@ -146,6 +146,9 @@
     }
     li.white{
        background: #fff;
+    }
+    li.none{
+      display: none;
     }
 
 
@@ -333,13 +336,13 @@
             var buttonID = event.srcElement.id;
             var num =buttonID.split("_");
             var Del = document.getElementById("li"+num[1]);
-            Del.remove();
+            Del.className='none';
            
         }
     
         let cnt = 0;
     
-        function add_todolist(e) {
+        function add_todolist() {
             // e.preventDefault();
          
     
@@ -395,7 +398,9 @@
             timelist_li.appendChild(textlist);
           
             timelist_li.appendChild(list_del_div);
-    
+
+            timelist_li.classList.add('block');
+            
             todolist.appendChild(timelist_li);
             cnt = cnt + 1;
         }
@@ -416,19 +421,22 @@
                 
             }
     function Time_check() {
-        var myNodelist = document.getElementsByTagName("LI");
-        
+        var myNodelist = document.getElementsByClassName("block");
+           
       
-            for(var i=0; i< myNodelist.length-1; i++){
+            for(var i=0; i< myNodelist.length; i++){
 
                 var timeck = document.getElementById("time_"+i); 
                 var time_str = timeck.innerText;
                 var time_sp = time_str.split(" ");
-                var LI_text = document.getElementById("text_"+i).innerText; 
+                var LI_text = document.getElementById("text_"+i).innerText;
+                
                 if(time_sp[1]==now_hour&&time_sp[3]==now_min){
                 if(now_sec=="0") alert(LI_text);
                 }
                 console.log("for"+i);
+               
+
 
             }
         
