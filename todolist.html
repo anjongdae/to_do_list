@@ -51,6 +51,18 @@
         list-style: none;
     }
 
+    .but {
+
+        float:right;
+    }
+
+    div.div_text {
+
+        max-width: 195px;
+        overflow-x: auto;
+    }
+
+
     input,
     button {
         outline: none;
@@ -392,6 +404,10 @@
             textlist.appendChild(Textval);
             textlist.id  = 'text_' + cnt;
             
+            textlist.classList.add('div_text');
+            list_del_div.classList.add('but');
+
+
             list_del_div.appendChild(list_del);
     
             timelist_li.appendChild(timelist);
@@ -402,6 +418,16 @@
             timelist_li.classList.add('block');
             
             todolist.appendChild(timelist_li);
+
+            const objArr = [];
+                objArr.push({
+                    time_set: `${timeText}`,
+                    title: `${text_val}`,
+                    display_class: `block`,
+                });
+
+            //localStorage.setItem(list, JSON.stringify(objArr));    
+
             cnt = cnt + 1;
         }
     function printTime() {
